@@ -1,0 +1,185 @@
+﻿@using ShareYou.Model.Forum
+@using ShareYou.Model.ViewModel
+@model ShareYou.Model.ViewModel.ViewBoardIndex
+@{
+    ViewBag.Title = "版块";
+    Layout = "~/Layout/LayoutHome.cshtml";
+}
+注意这里要进行一次的分割
+@section jqready
+{
+    InitPage();
+}
+@section function
+{
+
+        function InitPage(){
+            $('.apage').click(function() {
+                //我们点击隐藏的时候就可以开始准备滑动了
+                $('.panel.panel-info').slideUp(400);
+                //这里要做的就是发送请求
+                var pageindex = $(this).text();
+                //发送ajax请求
+                $.getJSON("/Forum/Post/GetViewPost", { "pageindex": pageindex, "boardid": @Model.Board.BoardId }, function(data) {
+                    //返回数据之后,
+                    if (data != null) {
+                        $('.panel.panel-info').each(function(index) {
+                            //对每个这个对象进行迭代
+                            $(this).find('.panel-heading').text(data.Posts[index].Title);
+                            $(this).find('.img-rounded').attr('src', "/" + data.Posts[index].head).next().text(data.Posts[index].Content);
+                            $(this).find('small').first().text(data.Posts[index].Like);
+                            $(this).find('small').last().text(data.Posts[index].UnLike);
+
+                        });
+                        $('.panel.panel-info').slideDown(400);
+                    }
+    });
+    return false;
+            });
+        }
+
+}
+
+@section containerrow
+{
+    <div class="row">
+        <div class="col-sm-4 col-md-3">
+            <!--上面添加我们的图标信息-->
+            <img src="
+/Content/Image/Head/d05c2853-6847-4b72-b0bf-c33917cf47e7.png" alt="论坛版块" class="img-rounded">
+            <hr />
+            <blockquote>
+                <p>@Model.Board.Description</p>
+                <footer><cite title="Source Title">Microsoft</cite></footer>
+            </blockquote>
+
+
+            <form>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search">
+                    <span class="glyphicon glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+                </div>
+            </form>
+
+            <div class="list-group">
+                <a href="#" class="list-group-item active">
+                    Cras justo odio
+                </a>
+                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item">Morbi leo risus</a>
+                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item">Vestibulum at eros</a>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-7">
+            <!--内容进行相关的排列-->
+            <!--面包屑导航-->
+            <div class="page-header">
+                <h1>
+                    Overview<small>__展示所有帖子信息</small>
+                </h1>
+            </div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                <li role="presentation"><a href="#top" aria-controls="top" role="tab" data-toggle="tab">top</a></li>
+                <li role="presentation"><a href="#" aria-controls="less" role="tab" data-toggle="tab">less</a></li>
+            </ul>
+            <br />
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane in fade active" id="home">
+
+                    @{
+                        foreach (ViewPost post in Model.ViewPosts)
+                        {
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                @post.Post.Title
+
+                            </div>
+                            <div class="panel-body">
+                                <!--添加头像-->
+                                <img class="img-rounded" src="/@post.User.Head" style="height: 50px; width: 50px;" />
+
+                                &nbsp;&nbsp;<span></span>@post.Post.Content<a href="/forum/post/index?postid=@post.Post.PostId">详情</a><br />
+                                <div style="margin-top: 9px; margin-bottom: -10px;">
+                                    <span class="glyphicon  glyphicon-thumbs-up" aria-hidden="true"></span>
+                                    <small>@post.Post.Like</small>
+                                    <span class="glyphicon glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                                    <small>@post.Post.UnLike</small>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    }
+
+
+                </div>
+                <div role="tabpanel" id="top" class="tab-pane fade in">
+                    this is a top!!!
+                </div>
+            </div>
+
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @{
+                        for (int i = 1; i <= Model.PageCount; i++)
+                        {
+                            if (i == 1)
+                            {
+                        <li class="active"><a class="apage" href="#">@i</a></li>
+                            }
+                            else
+                            {
+                        <li><a class="apage" href="#">@i</a></li>
+                            }
+                        }
+                    }
+
+                    <li>
+                        <a href="#1111" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-sm-12 col-md-2" style="">
+            <br />
+            <button type="button" class="btn btn-info btn-block">发帖</button>
+            <br />
+            <div class="panel panel-default">
+                <div class="panel-heading">最新评论</div>
+                <div class="panel-body">
+                    <!--评论的具体情况-->
+                    <!--一个div评论一个-->
+
+                    <div>
+                        <img class="img-rounded" src="/Content/Image/Head/b7f606dc-276c-4dc6-9c22-699019f07ec3.png" style="float: left; height: 50px; width: 50px;" />评论了title...:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你就像坨狗屎!!!哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    </div>
+                    <br />
+                    <div>
+                        <img class="img-rounded" src="/Content/Image/Head/b7f606dc-276c-4dc6-9c22-699019f07ec3.png" style="float: left; height: 50px; width: 50px;" />评论了title...:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你就像坨狗屎!!!哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    </div>
+                    <br />
+                    <div>
+                        <img class="img-rounded" src="/Content/Image/Head/b7f606dc-276c-4dc6-9c22-699019f07ec3.png" style="float: left; height: 50px; width: 50px;" />评论了title...:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你就像坨狗屎!!!哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    </div>
+                    <br />
+                    <div>
+                        <img class="img-rounded" src="/Content/Image/Head/b7f606dc-276c-4dc6-9c22-699019f07ec3.png" style="float: left; height: 50px; width: 50px;" />评论了title...:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你就像坨狗屎!!!哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    </div>
+                    <br />
+                    <div>
+                        <img class="img-rounded" src="/Content/Image/Head/b7f606dc-276c-4dc6-9c22-699019f07ec3.png" style="float: left; height: 50px; width: 50px;" />评论了title...:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你就像坨狗屎!!!哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

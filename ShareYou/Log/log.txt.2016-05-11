@@ -1,0 +1,81 @@
+2016-05-11 15:52:37 [17] ERROR Memcached.Client.MemcachedClient (null) - Exception thrown while trying to get object from cache for key: b42b1ddb990145e78fe53c01f41ee19c
+System.IO.IOException: 无法将数据写入传输连接: 远程主机强迫关闭了一个现有的连接。。 ---> System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.IO.BufferedStream.Flush()
+   在 Memcached.Client.SockIO.Flush()
+   在 Memcached.Client.MemcachedClient.Get(String key, Object hashCode, Boolean asString)
+2016-05-11 16:24:45 [11] ERROR Memcached.Client.MemcachedClient (null) - Exception thrown while trying to get object from cache for key: b42b1ddb990145e78fe53c01f41ee19c
+System.IO.IOException: 无法将数据写入传输连接: 远程主机强迫关闭了一个现有的连接。。 ---> System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.IO.BufferedStream.Flush()
+   在 Memcached.Client.SockIO.Flush()
+   在 Memcached.Client.MemcachedClient.Get(String key, Object hashCode, Boolean asString)
+2016-05-11 16:58:29 [10] ERROR Memcached.Client.MemcachedClient (null) - Exception thrown while trying to get object from cache for key: b42b1ddb990145e78fe53c01f41ee19c
+System.IO.IOException: 无法将数据写入传输连接: 远程主机强迫关闭了一个现有的连接。。 ---> System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.IO.BufferedStream.Flush()
+   在 Memcached.Client.SockIO.Flush()
+   在 Memcached.Client.MemcachedClient.Get(String key, Object hashCode, Boolean asString)
+2016-05-11 16:59:20 [10] ERROR Memcached.Client.MemcachedClient (null) - Exception thrown while trying to get object from cache for key: b42b1ddb990145e78fe53c01f41ee19c
+System.IO.IOException: 无法将数据写入传输连接: 远程主机强迫关闭了一个现有的连接。。 ---> System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.IO.BufferedStream.Flush()
+   在 Memcached.Client.SockIO.Flush()
+   在 Memcached.Client.MemcachedClient.Get(String key, Object hashCode, Boolean asString)
+2016-05-11 17:22:40 [11] ERROR Memcached.Client.MemcachedClient (null) - Exception thrown while trying to get object from cache for key: 66e76222fcc046de979ea5aff9e2b737
+System.IO.IOException: 无法将数据写入传输连接: 远程主机强迫关闭了一个现有的连接。。 ---> System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.IO.BufferedStream.Flush()
+   在 Memcached.Client.SockIO.Flush()
+   在 Memcached.Client.MemcachedClient.Get(String key, Object hashCode, Boolean asString)
+2016-05-11 17:22:40 [11] ERROR Memcached.Client.MemcachedClient (null) - exception thrown while writing bytes to server on delete
+System.IO.IOException: 无法将数据写入传输连接: 远程主机强迫关闭了一个现有的连接。。 ---> System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.IO.BufferedStream.Flush()
+   在 Memcached.Client.SockIO.Flush()
+   在 Memcached.Client.MemcachedClient.Delete(String key, Object hashCode, DateTime expiry)
+2016-05-11 17:22:40 [11] ERROR Memcached.Client.MemcachedClient (null) - exception thrown while writing bytes to server on set()
+System.IO.IOException: 无法将数据写入传输连接: 远程主机强迫关闭了一个现有的连接。。 ---> System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.IO.BufferedStream.Flush()
+   在 Memcached.Client.SockIO.Flush()
+   在 Memcached.Client.MemcachedClient.Set(String cmdname, String key, Object obj, DateTime expiry, Object hashCode, Boolean asString)
+2016-05-11 17:32:07 [10] ERROR Memcached.Client.MemcachedClient (null) - Exception thrown while trying to get object from cache for key: 66e76222fcc046de979ea5aff9e2b737
+System.IO.IOException: 无法将数据写入传输连接: 远程主机强迫关闭了一个现有的连接。。 ---> System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.IO.BufferedStream.Flush()
+   在 Memcached.Client.SockIO.Flush()
+   在 Memcached.Client.MemcachedClient.Get(String key, Object hashCode, Boolean asString)
+2016-05-11 18:00:03 [15] ERROR Memcached.Client.MemcachedClient (null) - Exception thrown while trying to get object from cache for key: 66e76222fcc046de979ea5aff9e2b737
+System.IO.IOException: 无法将数据写入传输连接: 远程主机强迫关闭了一个现有的连接。。 ---> System.Net.Sockets.SocketException: 远程主机强迫关闭了一个现有的连接。
+   在 System.Net.Sockets.Socket.Send(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   在 System.IO.BufferedStream.Flush()
+   在 Memcached.Client.SockIO.Flush()
+   在 Memcached.Client.MemcachedClient.Get(String key, Object hashCode, Boolean asString)

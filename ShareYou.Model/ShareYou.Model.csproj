@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0DAE05A5-97C9-4B21-A16F-E6F9E7C76C00}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShareYou.Model</RootNamespace>
+    <AssemblyName>ShareYou.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomeException\CacheException.cs" />
+    <Compile Include="CustomeException\EmailValideCodeException.cs" />
+    <Compile Include="CustomeException\UserException.cs" />
+    <Compile Include="Enum\DelFlag.cs" />
+    <Compile Include="Enum\EmailValide.cs" />
+    <Compile Include="Enum\Member.cs" />
+    <Compile Include="Enum\PrResult.cs" />
+    <Compile Include="Enum\UserAction.cs" />
+    <Compile Include="Enum\UserLooked.cs" />
+    <Compile Include="Forum\ForumBoard.cs" />
+    <Compile Include="Forum\ForumPost.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInfo\ForumComment.cs" />
+    <Compile Include="UserInfo\ForumMember.cs" />
+    <Compile Include="UserInfo\Friend.cs" />
+    <Compile Include="UserInfo\FriendGroup.cs" />
+    <Compile Include="UserInfo\FriendOperation.cs" />
+    <Compile Include="UserInfo\FriendRequest.cs" />
+    <Compile Include="UserInfo\LikePerson.cs" />
+    <Compile Include="UserInfo\LikePost.cs" />
+    <Compile Include="UserInfo\UserInfo.cs" />
+    <Compile Include="UserInfo\UserMessage.cs" />
+    <Compile Include="UserInfo\UserOperation.cs" />
+    <Compile Include="UserInfo\UserSimp.cs" />
+    <Compile Include="ViewModel\SessionModel.cs" />
+    <Compile Include="ViewModel\ViewBoardIndex.cs" />
+    <Compile Include="ViewModel\ViewComment.cs" />
+    <Compile Include="ViewModel\ViewHomeIndex.cs" />
+    <Compile Include="ViewModel\ViewPost.cs" />
+    <Compile Include="ViewModel\ViewPostIndex.cs" />
+    <Compile Include="ViewModel\ViewPostPersonList.cs" />
+    <Compile Include="ViewModel\ViewUser.cs" />
+    <Compile Include="ViewModel\ViewUserInfo.cs" />
+    <Compile Include="ViewModel\ViewUserOperation.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

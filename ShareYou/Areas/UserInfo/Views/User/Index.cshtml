@@ -1,0 +1,176 @@
+﻿@{
+    Layout = "~/Layout/LayoutHome.cshtml";
+    ViewBag.Title = "用户个人主页";
+}
+@section style
+{
+    <style type="text/css">
+        .list-group-item {
+            border-radius: 4px;
+            border-color: transparent !important;
+            width: 85%;
+        }
+
+        hr {
+            margin-top: 7px !important;
+            margin-bottom: 16px !important;
+        }
+
+        img {
+            margin-bottom: 6px !important;
+            border-radius: 4px;
+            border-color: transparent !important;
+        }
+    </style>
+}
+@section containerrow
+{
+    @*<div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div>
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">...</div>
+                        <div role="tabpanel" class="tab-pane" id="profile">...</div>
+                        <div role="tabpanel" class="tab-pane" id="messages">...</div>
+                        <div role="tabpanel" class="tab-pane" id="settings">...</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+
+    <div class="row">
+        <div class="col-sm-4 col-md-2">
+
+            &nbsp;&nbsp;&nbsp;&nbsp;<img src="~/Content/Image/Head/73eac6d4-9d3c-4ca6-bb0d-5906146cf055.png" class="img-rounded" />
+            <br />
+            &nbsp;&nbsp;&nbsp; &nbsp;<span>King_両月满天</span>
+            <br />
+            <br />
+            &nbsp;&nbsp;<span class="glyphicon glyphicon-user" style="font-size: 16px;" aria-hidden="true"></span><span style="font-size: 11px;">99</span>
+            &nbsp;&nbsp;<span class="glyphicon glyphicon-heart" style="font-size: 16px;" aria-hidden="true"></span><span style="font-size: 11px;">99</span>
+            &nbsp;&nbsp;<span class="glyphicon glyphicon-sunglasses" style="font-size: 16px;" aria-hidden="true"></span><span style="font-size: 11px;">99</span>
+            <hr />
+            <div class="list-group">
+                <a href="#" class="list-group-item active">我的博文</a>
+                <a href="#" class="list-group-item">我的好友</a>
+                <a href="#" class="list-group-item">最新回复</a>
+                <a href="#" class="list-group-item">收到的赞</a>
+                <a href="#" class="list-group-item">系统通知</a>
+                <a href="#" class="list-group-item">操作记录</a>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-8">
+            <!--我的博文-->
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">我的博文列表</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>发表时间</th>
+                                <th>回复</th>
+                                <th>最后一次回复</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <span class="label label-info">最新</span>
+                                    <button type="button" class="btn btn-link">如何学习.net</button>
+                                </td>
+                                <td>2015-15-95</td>
+                                <td>25</td>
+                                <td>2015-2-1</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="label label-info">最新</span>
+                                    <button type="button" class="btn btn-link">如何学习.net</button>
+                                </td>
+                                <td>2015-15-95</td>
+                                <td>25</td>
+                                <td>2015-2-1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">我的好友</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li href="#" class="list-group-item active">
+                            <img style="width: 40px; height: 40px;" src="~/Content/Image/Head/73eac6d4-9d3c-4ca6-bb0d-5906146cf055.png" class="img-rounded"/>
+                            King_両月满天
+                            <span class="badge">14</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">最新回复</div>
+                <div class="panel-body">
+                    <img style="width: 40px; height: 40px;" src="~/Content/Image/Head/73eac6d4-9d3c-4ca6-bb0d-5906146cf055.png" class="img-rounded"/> Q_大有评论了你的帖子:如何学习.net:<br/>
+                    bliafdafdafdsafdsafdsafdasfd
+                    <br/>
+                    2015-02-15
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">收到的赞</div>
+                <div class="panel-body">
+                    <img style="width: 40px; height: 40px;" src="~/Content/Image/Head/73eac6d4-9d3c-4ca6-bb0d-5906146cf055.png" class="img-rounded"/> Q_大有点赞了您<br/>
+                    <br/>
+                    2015-02-15
+                    <br/>
+                    <img style="width: 40px; height: 40px;" src="~/Content/Image/Head/73eac6d4-9d3c-4ca6-bb0d-5906146cf055.png" class="img-rounded"/> Q_大大有点赞了你的帖子：如何学习.net<br/>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">操作记录</div>
+                <div class="panel-body">
+                    <img style="width: 40px; height: 40px;" src="~/Content/Image/Head/73eac6d4-9d3c-4ca6-bb0d-5906146cf055.png" class="img-rounded"/> 评论了帖子:如何学习.net:<br/>
+                    fdasfdasfdsafdsafdsafdsafdsa
+                    <br/>
+                    2015-02-15
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">最火用户列表</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li href="#" class="list-group-item active">
+                            <img style="width: 40px; height: 40px;" src="~/Content/Image/Head/73eac6d4-9d3c-4ca6-bb0d-5906146cf055.png" class="img-rounded" />
+                            King_両月满天
+                            <span class="badge">14</span>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{74269CC7-A762-4DD9-8B2A-15F6D5E2C741}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShareYou.Services</RootNamespace>
+    <AssemblyName>ShareYou.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forum\BoardService.cs" />
+    <Compile Include="Forum\CommentService.cs" />
+    <Compile Include="Forum\FriendOperationService.cs" />
+    <Compile Include="Forum\LikePersonService.cs" />
+    <Compile Include="Forum\LikePostService.cs" />
+    <Compile Include="Forum\PostService.cs" />
+    <Compile Include="Forum\UserOperationService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\AddFriendOperation.cs" />
+    <Compile Include="User\FriendMessageService.cs" />
+    <Compile Include="User\FriendRequestService.cs" />
+    <Compile Include="User\FriendService.cs" />
+    <Compile Include="User\UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShareYou.DBAccess\ShareYou.DBAccess.csproj">
+      <Project>{33b094ab-9d0f-4feb-b247-4fe217f89de0}</Project>
+      <Name>ShareYou.DBAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IDBAccess\ShareYou.IDBAccess.csproj">
+      <Project>{1a91222f-227e-406d-ba0b-88aaf484520c}</Project>
+      <Name>ShareYou.IDBAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IDBSession\ShareYou.IDBSession.csproj">
+      <Project>{9DEE0F68-EABC-4414-83CE-580DAC50116E}</Project>
+      <Name>ShareYou.IDBSession</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IServices\ShareYou.IServices.csproj">
+      <Project>{6A4951A1-B234-4B87-9F9B-5596E585BA87}</Project>
+      <Name>ShareYou.IServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.Model\ShareYou.Model.csproj">
+      <Project>{0DAE05A5-97C9-4B21-A16F-E6F9E7C76C00}</Project>
+      <Name>ShareYou.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.Utility\ShareYou.Utility.csproj">
+      <Project>{28103564-9F87-4A86-B3B9-CBB46981044C}</Project>
+      <Name>ShareYou.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

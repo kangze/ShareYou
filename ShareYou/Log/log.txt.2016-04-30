@@ -1,0 +1,6 @@
+2016-04-30 22:23:45 [9] ERROR Memcached.Client.SockIOPool (null) - Failed to get SockIO obj for: 127.0.0.1:11211 -- new socket is not connected
+System.IO.IOException: Could not connect for 1000 milliseconds
+   дк Memcached.Client.SockIO.GetSocket(String host, Int32 port, Int32 timeout)
+   дк Memcached.Client.SockIO..ctor(SockIOPool pool, String host, Int32 timeout, Int32 connectTimeout, Boolean noDelay)
+   дк Memcached.Client.SockIOPool.CreateSocket(String host)
+2016-04-30 22:23:45 [9] ERROR Memcached.Client.SockIOPool (null) - Failed to create connection to: 127.0.0.1:11211 -- only 0 created

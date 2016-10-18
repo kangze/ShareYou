@@ -1,0 +1,155 @@
+﻿@using ShareYou.Model.Forum
+@using ShareYou.Model.ViewModel
+@using ShareYou.Utility.Path
+@model ShareYou.Model.ViewModel.ViewHomeIndex
+@{
+    Layout = "~/Layout/LayoutHome.cshtml";
+    ViewBag.Title = "首页";
+}
+@section style
+{
+    <style type="text/css">
+        .list-group-item {
+            border-radius: 4px;
+            border-color: transparent !important;
+            width: 85%;
+        }
+
+        hr {
+            margin-top: 7px !important;
+            margin-bottom: 5px !important;
+        }
+
+        img {
+            margin-bottom: 6px !important;
+            margin-right: 15px !important;
+            border-radius: 4px;
+            border-color: transparent !important;
+        }
+
+        .panel-body {
+            padding: 5px !important;
+        }
+
+        .panel-heading {
+            padding: 1px 1px 4px 1px !important
+        }
+
+        .panel-info {
+            border: none;
+            box-shadow: 0 1px 1px rgba(193, 230, 251,1) !important;
+        }
+        /**图标的位置*/
+        .glyphicon {
+            top: 5px !important;
+            font-size: 17px !important;
+        }
+
+        .tabltext {
+            position: relative;
+            top: 1px;
+        }
+
+        .userlink {
+            position: relative;
+            top: 3px;
+        }
+
+        .radom {
+            padding: 0 !important;
+        }
+    </style>
+}
+
+
+@section containerrow
+{
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <!--网站的主题开始-->
+            <h1>ShareYou<br /><small>Showcase your excellence</small></h1>
+            <br />
+            <div class="list-group">
+                <a href="#" class="list-group-item active">首页</a>
+                @{
+                foreach (ForumBoard board in Model.Boards)
+                {
+            <a href="/forum/board/index?boardid=@board.BoardId" class="list-group-item">@board.Title</a>
+                }
+                }
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <!--图片轮播-->
+            <div>
+                <img style="max-width: 100%;" src="~/Content/Image/fenjing.jpg" />
+            </div>
+            <br />
+            @{
+                foreach (ViewPost post in Model.Posts)
+                {
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <span class="label label-primary" style="font-size: 2px !important;">主题</span> <a class="text-primary" href="/forum/post/index?postid=@post.Post.PostId">@post.Post.Title</a>
+                        </div>
+                        <div class="panel-body">
+                            <!--响应式布局-->
+
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@post.Post.Content</span>
+                            <hr />
+                            <img class="img-rounded" style="float: left; height: 30px; width: 30px;" src="/@post.User.Head" />
+                            <!--发表时间-->
+                            <a class="userlink" href="/userinfo/user/person?userid=@post.User.UserId">@post.User.UserName</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;&nbsp;<small class="tabltext">@post.Post.DateLine</small>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon  glyphicon-thumbs-up" aria-hidden="true"></span>
+                            <small class="tabltext">@post.Post.Like</small>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="glyphicon glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                            <small class="tabltext">@post.Post.UnLike</small>
+                        </div>
+                    </div>
+                }
+            }
+
+
+
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">随机推荐</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">精选</a></li>
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <br />
+
+                        @{
+                            foreach (ForumPost Post in Model.PostsRandom)
+                            {
+                                <div class="panel panel-info radom">
+                                    <div class="panel-body">
+                                        <span class="label label-info">随机</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/forum/post/index?postid=@Post.PostId" postid="@Post.PostId">@Post.Title</a>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">监听器</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{33B094AB-9D0F-4FEB-B247-4FE217F89DE0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShareYou.DBAccess</RootNamespace>
+    <AssemblyName>ShareYou.DBAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DB\DbValue.cs" />
+    <Compile Include="Forum\BoardDal.cs" />
+    <Compile Include="Forum\CommentDal.cs" />
+    <Compile Include="Forum\FriendOperationDal.cs" />
+    <Compile Include="Forum\LikePersonDal.cs" />
+    <Compile Include="Forum\LikePostDal.cs" />
+    <Compile Include="Forum\PostDal.cs" />
+    <Compile Include="Forum\UserOperationDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlHelper.cs" />
+    <Compile Include="User\FriendDal.cs" />
+    <Compile Include="User\FriendMessageDal.cs" />
+    <Compile Include="User\FriendRequestDal.cs" />
+    <Compile Include="User\UserDal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShareYou.IDBAccess\ShareYou.IDBAccess.csproj">
+      <Project>{1A91222F-227E-406D-BA0B-88AAF484520C}</Project>
+      <Name>ShareYou.IDBAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.Model\ShareYou.Model.csproj">
+      <Project>{0DAE05A5-97C9-4B21-A16F-E6F9E7C76C00}</Project>
+      <Name>ShareYou.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

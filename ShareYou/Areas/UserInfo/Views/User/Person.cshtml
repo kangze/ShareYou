@@ -1,0 +1,118 @@
+﻿@model ShareYou.Model.ViewModel.ViewUserInfo
+@{
+    Layout = "~/Layout/LayoutHome.cshtml";
+    ViewBag.Title = "用户空间";
+}
+@section style
+{
+    <style type="text/css">
+        .list-group-item {
+            border-radius: 4px;
+            border-color: transparent !important;
+            width: 85%;
+        }
+
+        .panel-info {
+            border: none;
+            box-shadow: 0 1px 1px rgba(193, 230, 251,1) !important;
+        }
+    </style>
+}
+@section jqready
+{
+ 
+        $('#post').click(initpost);
+
+        $('#operation').click(initd);
+
+}
+@section function
+{
+
+    
+    var username="@Model.User.UserName";
+        function initpost() {
+            $.getJSON('/forum/post/getpersonposts', { "userid": @Model.User.UserId, "pageindex": 1 }, function(data) {
+                if (data.state) {
+                    for (var i = 0; i < data.posts.length; i++)
+                        $('#postbody').append('<tr><td><a href="/forum/post/index?postid=' + data.posts[i].Post.PostId + '">' + data.posts[i].Post.Title + "</td><td>" + data.posts[i].Post.DateLine + "</td><td>" + data.posts[i].Post.Like + "</td><th>" + data.posts[i].CountComment + "</th></tr>");
+                    $('#posttable').show();
+                }
+            });
+        }
+    function initd() {
+            $.getJSON('/forum/UserOperation/GetUserOperationByPage', { "userid": @Model.User.UserId, "pageindex": 1 }, function(data) {
+            if (data != null) {
+            for (var i = 0; i < data.Comments.length; i++)
+            $('#dbody').append("<tr><td>"+"发表了评论    "+"<a href='/forum/post/index?postid="+data.Comments[i].PostId+"'>"+data.Comments[i].Content+"</a></td></tr>");
+            $('#dtable').show();
+            }
+            });
+            }
+
+        
+
+}
+
+@section containerrow
+{
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body ">
+                    <img src="/@Model.User.Head" class="img-circle center-block" />
+                    <br />
+                    <div style="text-align: center">
+                        @Model.User.UserName
+                    </div>
+                    <div style="text-align: center">
+                        @Model.UserInfo.Description
+                    </div>
+                    <div style="text-align: center">
+                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>@Model.UserInfo.Liked
+                        <span class="glyphicon glyphicon-eye-open">@Model.UserInfo.Follower</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-md-2">
+            <div class="list-group">
+                <a href="#" id="post" class="list-group-item active">他的博文</a>
+                <a href="#" id="operation" class="list-group-item">他的动态</a>
+                <a href="#" class="list-group-item">他的粉丝</a>
+                <a href="#" class="list-group-item">私信TA</a>
+                <a href="#" class="list-group-item">暂时保留</a>
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">他的博文列表</div>
+                <div class="panel-body">
+                    <!--这里放入一个表格-->
+                    <!--这里是测试数据-->
+                    <table class="table table-hover" id="posttable" style="display: none !important;">
+                        <thead>
+                        <tr>
+                            <th>标题</th>
+                            <th>发表时间</th>
+                            <th>赞</th>
+                            <th>回复数量</th>
+                        </tr>
+                        </thead>
+                        <tbody id="postbody"></tbody>
+                    </table>
+                    <table class="table table-hover" id="dtable" style="display: none !important;">
+                        <thead>
+                            <tr>
+                                <th>标题</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}

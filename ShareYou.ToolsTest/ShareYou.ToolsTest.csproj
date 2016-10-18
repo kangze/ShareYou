@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B1E15C8-27D4-49EC-99DD-B2B621007B08}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShareYou.ToolsTest</RootNamespace>
+    <AssemblyName>ShareYou.ToolsTest</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.4.369, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Memcached.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
+      <HintPath>..\packages\Memcached.Client.1.0.0\lib\Memcached.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShareYou.AspNetSession\ShareYou.AspNetSession.csproj">
+      <Project>{32df58b6-ea73-4bed-af21-d26f14e5541f}</Project>
+      <Name>ShareYou.AspNetSession</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.DBAccess\ShareYou.DBAccess.csproj">
+      <Project>{33B094AB-9D0F-4FEB-B247-4FE217F89DE0}</Project>
+      <Name>ShareYou.DBAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.DBSession\ShareYou.DBSession.csproj">
+      <Project>{7872b273-0d78-439e-b68d-373d263a3565}</Project>
+      <Name>ShareYou.DBSession</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IDBAccess\ShareYou.IDBAccess.csproj">
+      <Project>{1a91222f-227e-406d-ba0b-88aaf484520c}</Project>
+      <Name>ShareYou.IDBAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IDBSession\ShareYou.IDBSession.csproj">
+      <Project>{9dee0f68-eabc-4414-83ce-580dac50116e}</Project>
+      <Name>ShareYou.IDBSession</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IServices\ShareYou.IServices.csproj">
+      <Project>{6a4951a1-b234-4b87-9f9b-5596e585ba87}</Project>
+      <Name>ShareYou.IServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IState\ShareYou.IState.csproj">
+      <Project>{cb55ac96-6407-4553-8369-13351ade6727}</Project>
+      <Name>ShareYou.IState</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.Model\ShareYou.Model.csproj">
+      <Project>{0dae05a5-97c9-4b21-a16f-e6f9e7c76c00}</Project>
+      <Name>ShareYou.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.Services\ShareYou.Services.csproj">
+      <Project>{74269cc7-a762-4dd9-8b2a-15f6d5e2c741}</Project>
+      <Name>ShareYou.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.Utility\ShareYou.Utility.csproj">
+      <Project>{28103564-9f87-4a86-b3b9-cbb46981044c}</Project>
+      <Name>ShareYou.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

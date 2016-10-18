@@ -1,0 +1,944 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C9E6EA79-F550-4624-B3DD-D2F25D899EC3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShareYou</RootNamespace>
+    <AssemblyName>ShareYou</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.4.369, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Memcached.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
+      <HintPath>..\packages\Memcached.Client.1.0.0\lib\Memcached.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="Content\bootstrap-3.3.5\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-3.3.5\css\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-3.3.5\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-3.3.5\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap-3.3.5\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap-3.3.5\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\CHANGES.md" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\LICENSE.md" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\scayt\CHANGELOG.md" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\README.md" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\assets\posteddata.php" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\sample_posteddata.php" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\font\config.json" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\readme.md" />
+    <Content Include="Content\grumble.js-master\build\build.bat" />
+    <Content Include="Content\grumble.js-master\build\google-compiler-licence" />
+    <Content Include="Content\grumble.js-master\build\optipng-licence" />
+    <Content Include="Content\grumble.js-master\build\yui-compressor-licence" />
+    <Content Include="Content\grumble.js-master\README.md" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\.editorconfig" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\.npmignore" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\bower.json" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\CHANGELOG.md" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\examples\crop-avatar\crop.php" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\examples\crop-avatar\README.md" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\LICENSE.md" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\package.json" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\README.md" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\.csscomb.json" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\.csslintrc" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\.jscsrc" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\.jshintrc" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\less\cropper.less" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\less\main.less" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\less\mixins.less" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\less\utilities.less" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\less\variables.less" />
+    <Content Include="Content\jqcool.net-divas\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\jqcool.net-divas\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\jqcool.net-divas\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\jqcool.net-divas\fonts\FontAwesome.otf" />
+    <Content Include="Content\jqcool.net-divas\jQ酷.url" />
+    <Content Include="Areas\Forum\Views\web.config" />
+    <Content Include="Areas\UserInfo\Views\User\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\Post\Index.cshtml" />
+    <Content Include="Layout\LayoutHome.cshtml" />
+    <Content Include="Areas\UserInfo\Views\web.config" />
+    <Content Include="Layout\web.config" />
+    <Content Include="Areas\UserInfo\Views\User\Person.cshtml" />
+    <Content Include="Areas\Forum\Views\Board\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\MyShareYouWebSite.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-3.3.5\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-3.3.5\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-3.3.5\css\bootstrap.css" />
+    <Content Include="Content\bootstrap-3.3.5\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-3.3.5\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-3.3.5\js\bootstrap.js" />
+    <Content Include="Content\bootstrap-3.3.5\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-3.3.5\js\npm.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\adapters\jquery.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\ckeditor.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\config.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\contents.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\af.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ar.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\bg.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\bn.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\bs.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ca.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\cs.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\cy.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\da.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\de-ch.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\de.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\el.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\en-au.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\en-ca.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\en-gb.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\en.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\eo.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\es.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\et.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\eu.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\fa.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\fi.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\fo.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\fr-ca.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\fr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\gl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\gu.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\he.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\hi.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\hr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\hu.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\id.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\is.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\it.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ja.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ka.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\km.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ko.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ku.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\lt.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\lv.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\mk.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\mn.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ms.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\nb.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\nl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\no.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\pl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\pt-br.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\pt.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ro.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ru.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\si.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\sk.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\sl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\sq.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\sr-latn.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\sr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\sv.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\th.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\tr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\tt.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\ug.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\uk.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\vi.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\zh-cn.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\zh.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\lang\_translationstatus.txt" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\af.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\de-ch.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\en-gb.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\es.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\eu.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fo.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fr-ca.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\gl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\id.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ja.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\km.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ko.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\si.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sq.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sr-latn.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\sv.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\th.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\tt.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\zh.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\icons.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\icons_hidpi.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\image\images\noimage.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\magicline\images\hidpi\icon-rtl.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\magicline\images\icon-rtl.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\magicline\images\icon.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\af.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\bg.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\da.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\de-ch.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\en-gb.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\es.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\eu.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\fr-ca.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\gl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\hu.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\id.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\ja.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\km.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\ko.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\lt.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\pl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\pt.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\ru.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\si.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\sl.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\sq.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\sv.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\th.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\tt.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\uk.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\vi.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\zh.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\css\samples.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\img\github-top.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\img\header-bg.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\img\header-separator.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\img\logo.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\img\navigation-tip.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\index.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\js\sample.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\js\sf.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\ajax.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\api.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\appendto.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\assets\inlineall\logo.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\assets\sample.jpg" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\assets\uilanguages\languages.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\datafiltering.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\dialog\assets\my_dialog.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\dialog\dialog.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\divreplace.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\enterkey\enterkey.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.swf" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\htmlwriter\assets\outputforflash\swfobject.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\htmlwriter\outputforflash.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\htmlwriter\outputhtml.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\index.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\inlineall.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\inlinebycode.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\inlinetextarea.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\jquery.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\magicline\magicline.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\readonly.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\replacebyclass.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\replacebycode.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\sample.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\sample.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\tabindex.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\toolbar\toolbar.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\uicolor.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\uilanguages.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\wysiwygarea\fullpage.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\old\xhtmlstyle.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\css\fontello.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\font\fontello.svg" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\font\LICENSE.txt" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\index.html" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\js\abstracttoolbarmodifier.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\js\fulltoolbareditor.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\js\toolbarmodifier.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\js\toolbartextmodifier.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\javascript.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\dialog.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\dialog_ie.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\dialog_ie7.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\dialog_ie8.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\dialog_iequirks.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\editor.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\editor_gecko.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\editor_ie.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\editor_ie7.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\editor_ie8.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\editor_iequirks.css" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\icons.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\icons_hidpi.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\arrow.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\close.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\hidpi\close.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\hidpi\lock-open.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\hidpi\lock.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\hidpi\refresh.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\lock-open.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\lock.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\refresh.png" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\skins\moono\images\spinner.gif" />
+    <Content Include="Content\ckeditor_4.5.8_standard\ckeditor\styles.js" />
+    <Content Include="Content\grumble.js-master\build\compiler.jar" />
+    <Content Include="Content\grumble.js-master\build\optipng.exe" />
+    <Content Include="Content\grumble.js-master\build\yuicompressor-2.4.6.jar" />
+    <Content Include="Content\grumble.js-master\css\grumble.css" />
+    <Content Include="Content\grumble.js-master\css\grumble.min.css" />
+    <Content Include="Content\grumble.js-master\images\bubble-sprite.png" />
+    <Content Include="Content\grumble.js-master\index.html" />
+    <Content Include="Content\grumble.js-master\js\Bubble.js" />
+    <Content Include="Content\grumble.js-master\js\jquery.grumble.js" />
+    <Content Include="Content\grumble.js-master\js\jquery.grumble.min.js" />
+    <Content Include="Content\Image\1.jpg" />
+    <Content Include="Content\Image\2.jpg" />
+    <Content Include="Content\Image\3.jpg" />
+    <Content Include="Content\Image\4.jpg" />
+    <Content Include="Content\Image\5.jpg" />
+    <Content Include="Content\Image\6.jpg" />
+    <Content Include="Content\Image\bizhi.jpg" />
+    <Content Include="Content\Image\fenjing.jpg" />
+    <Content Include="Content\Image\head.jpg" />
+    <Content Include="Content\Image\Head\08ac4f85-333e-4fe5-afa4-6cc39082698e.png" />
+    <Content Include="Content\Image\Head\096560aa-4d2e-4353-af56-2598a69f98d3.png" />
+    <Content Include="Content\Image\Head\0be7ae4c-1a16-4d0e-91da-a4130f62a6b1.png" />
+    <Content Include="Content\Image\Head\0c056ab8-8990-4c67-b473-7e898e210f65.png" />
+    <Content Include="Content\Image\Head\0dfa02c4-ee74-4cd0-ad48-7255d1b652f8.png" />
+    <Content Include="Content\Image\Head\0f632168-b715-4d22-acc7-5af126e1ad45.png" />
+    <Content Include="Content\Image\Head\10f4534d-dbbe-43e8-bf94-826a844a434d.png" />
+    <Content Include="Content\Image\Head\12634d26-763a-4b95-b676-30b68e89dcb1.png" />
+    <Content Include="Content\Image\Head\15827c28-3e66-47e7-ab64-fd1c508ab09d.png" />
+    <Content Include="Content\Image\Head\1e0a9749-03ed-4556-a0b1-cfb8ffe53f0b.png" />
+    <Content Include="Content\Image\Head\22d19d48-d6e2-49bb-aee9-5abcba58b32d.png" />
+    <Content Include="Content\Image\Head\2c8d94e6-3d6b-4b61-8150-c3d3790b9ab8.png" />
+    <Content Include="Content\Image\Head\2f4afb6c-b147-4d1f-84ea-15c74bf14f75.png" />
+    <Content Include="Content\Image\Head\349b5c19-7d81-4b58-a8fa-f20236ceb3d8.png" />
+    <Content Include="Content\Image\Head\35b473e8-dcdf-454d-86f4-02a81fee62ab.png" />
+    <Content Include="Content\Image\Head\380f9864-4173-4844-9e60-cbe356281c97.png" />
+    <Content Include="Content\Image\Head\39ccee29-8326-4065-9f2e-28812217fdb3.png" />
+    <Content Include="Content\Image\Head\3a0071bb-da6c-49db-b18e-21a9e2885291.png" />
+    <Content Include="Content\Image\Head\3f2165d9-1070-4999-8def-6cdfa8112c79.png" />
+    <Content Include="Content\Image\Head\40e6a271-0125-4b62-b269-e12cd0ca7351.png" />
+    <Content Include="Content\Image\Head\44689a00-c00c-43bb-b774-e0045e18542c.png" />
+    <Content Include="Content\Image\Head\453c4fd5-2330-4ff7-9bbd-a57dc3e8e80a.png" />
+    <Content Include="Content\Image\Head\4bd8c100-27ea-4a19-af16-bf0961af67d0.png" />
+    <Content Include="Content\Image\Head\51df32c2-fe4d-4923-9bea-64c0241d4403.png" />
+    <Content Include="Content\Image\Head\53332435-3df4-43ec-9613-60468f020be2.png" />
+    <Content Include="Content\Image\Head\555b7051-6de5-4784-95e1-5c000d9f3a19.png" />
+    <Content Include="Content\Image\Head\5d0fccc0-d7c8-45db-a76d-ab126e9a6ed8.png" />
+    <Content Include="Content\Image\Head\5dd45428-8767-485d-89f0-df12ff4edf2f.png" />
+    <Content Include="Content\Image\Head\6313e2ca-6118-42f5-958a-329db31061c8.png" />
+    <Content Include="Content\Image\Head\6345bc44-11ca-4af8-9772-0dd5e7186764.png" />
+    <Content Include="Content\Image\Head\64b9351d-4754-400f-a557-da43852296d0.png" />
+    <Content Include="Content\Image\Head\663ece51-081a-48e9-9bd4-f29e2d737cba.png" />
+    <Content Include="Content\Image\Head\687eaa30-45f7-4baf-8335-bda6cba8a38a.png" />
+    <Content Include="Content\Image\Head\69ad3ef8-dd84-49e5-8e47-9741329d625e.png" />
+    <Content Include="Content\Image\Head\703dfe6d-d60a-4fa3-ace8-0abbf462117d.png" />
+    <Content Include="Content\Image\Head\71048975-77a4-484c-9050-c2d48a845182.png" />
+    <Content Include="Content\Image\Head\73eac6d4-9d3c-4ca6-bb0d-5906146cf055.png" />
+    <Content Include="Content\Image\Head\7532897c-285e-4092-b52c-cf40b4cede5d.png" />
+    <Content Include="Content\Image\Head\75981652-da45-402d-89f7-79ff7a6eb285.png" />
+    <Content Include="Content\Image\Head\76533f99-f41b-42ab-9897-541d2acbc0a3.png" />
+    <Content Include="Content\Image\Head\7681b38b-693b-4f32-9d41-e02b1639b30f.png" />
+    <Content Include="Content\Image\Head\7761703a-6510-4c84-81b6-1c2d3be12da5.png" />
+    <Content Include="Content\Image\Head\77befa66-3077-4bd8-ba37-a17a4bafe705.png" />
+    <Content Include="Content\Image\Head\7833e2e9-96fa-473c-90e0-4ad13489c652.png" />
+    <Content Include="Content\Image\Head\794e3ac4-e9c4-4edc-a672-dc9c6e92efa1.png" />
+    <Content Include="Content\Image\Head\7af9c5e3-2cf8-425b-bb26-02de7e479fd8.png" />
+    <Content Include="Content\Image\Head\7b12e0d6-e798-4be2-8d77-e13f5b2355a3.png" />
+    <Content Include="Content\Image\Head\7c5f396d-2a90-43a4-9428-a234433160d9.png" />
+    <Content Include="Content\Image\Head\7c9f12c7-94ea-40e6-9874-3e384744fa23.png" />
+    <Content Include="Content\Image\Head\7e51ef0e-cb46-48ac-b71f-5bdf42f98021.png" />
+    <Content Include="Content\Image\Head\7eb12e5e-044b-47e8-9c81-2b3d8940dd76.png" />
+    <Content Include="Content\Image\Head\8078a640-6e8b-49c0-aeb6-b935ca890b9d.png" />
+    <Content Include="Content\Image\Head\82523d92-eb3c-4655-94b0-2384ea03d9aa.png" />
+    <Content Include="Content\Image\Head\82abe33e-c126-489d-aa12-7bc523805c54.png" />
+    <Content Include="Content\Image\Head\8a40de65-87c0-4b4b-9a98-b0705b0559e4.png" />
+    <Content Include="Content\Image\Head\8bf59b67-b9de-4df0-8862-e83dc472918e.png" />
+    <Content Include="Content\Image\Head\91159bbf-453b-4ed2-a3b2-e8a3ee871aa0.png" />
+    <Content Include="Content\Image\Head\981c7dca-c172-46de-843c-c824fc5598a6.png" />
+    <Content Include="Content\Image\Head\9959d04a-ecdf-4750-b938-530406a2d1c1.png" />
+    <Content Include="Content\Image\Head\9af36b80-fce4-4c92-b834-46da60b7480b.png" />
+    <Content Include="Content\Image\Head\9b4d6a13-8159-4f0d-adb3-c74df35adeb5.png" />
+    <Content Include="Content\Image\Head\9bb04070-1fdb-40ff-a0af-dc72fc4df12f.png" />
+    <Content Include="Content\Image\Head\9dd5bec7-1d52-4dcc-b725-636c1f9ae983.png" />
+    <Content Include="Content\Image\Head\9e802de5-80f8-4230-8d47-ad5ed72708d6.png" />
+    <Content Include="Content\Image\Head\9f695844-3c52-424f-80c5-85987cc0bf54.png" />
+    <Content Include="Content\Image\Head\ad6bc442-d5bf-4ec6-a7ff-033480afa132.png" />
+    <Content Include="Content\Image\Head\ae108340-ae82-470d-8500-8d9cc6f40442.png" />
+    <Content Include="Content\Image\Head\b04a106d-2719-42ca-a9dc-771fcfd9a8df.png" />
+    <Content Include="Content\Image\Head\b197a2d1-fcc9-455d-8864-8d779f80c193.png" />
+    <Content Include="Content\Image\Head\b24f2adc-5fa1-4876-9114-1af66b201852.png" />
+    <Content Include="Content\Image\Head\b254b1f9-4195-4c39-b0ca-08bddcfd46d6.png" />
+    <Content Include="Content\Image\Head\b3516e06-c3b5-4257-9873-8d834b3b096d.png" />
+    <Content Include="Content\Image\Head\b38e3fa1-0132-45c3-8556-8d8e866163e2.png" />
+    <Content Include="Content\Image\Head\b7f606dc-276c-4dc6-9c22-699019f07ec3.png" />
+    <Content Include="Content\Image\Head\b82ebf09-f502-41a0-90dc-90648ffdbaac.png" />
+    <Content Include="Content\Image\Head\bb42e2b1-ea65-4e86-afb2-9c044b0a417a.png" />
+    <Content Include="Content\Image\Head\bd2adab3-9853-46d9-ada1-3cc03a2a7941.png" />
+    <Content Include="Content\Image\Head\bd5204e7-b353-4e51-8f65-f8ae4a7034af.png" />
+    <Content Include="Content\Image\Head\be3202f4-2b40-44fb-a74e-2e82710695f4.png" />
+    <Content Include="Content\Image\Head\c1937232-076a-416b-b3ea-0ffa4420b509.png" />
+    <Content Include="Content\Image\Head\c8a95288-1c35-4a31-bb2f-09b324ac5bad.png" />
+    <Content Include="Content\Image\Head\c91290e4-4c68-45c1-ac51-8d7ba4dbd077.png" />
+    <Content Include="Content\Image\Head\ca157a4f-45bd-41a3-9a70-9d3976f64e8a.png" />
+    <Content Include="Content\Image\Head\d05c2853-6847-4b72-b0bf-c33917cf47e7.png" />
+    <Content Include="Content\Image\Head\d0883029-e34e-49ab-bdd7-067cb02deebc.png" />
+    <Content Include="Content\Image\Head\d4accf45-5bd6-4fd9-ba22-d38909e15767.png" />
+    <Content Include="Content\Image\Head\d9c390ec-3e99-4ee5-9321-0d88352317ac.png" />
+    <Content Include="Content\Image\Head\dc6f2d3c-a44d-45b5-aa0d-71780b92b07c.png" />
+    <Content Include="Content\Image\Head\dcc34932-8a91-49b6-9eaf-54e62d678afc.png" />
+    <Content Include="Content\Image\Head\ddf2749b-39aa-4efb-96c7-afe8415aca22.png" />
+    <Content Include="Content\Image\Head\e7326cbb-9226-4562-9197-434aee5d52bf.png" />
+    <Content Include="Content\Image\Head\e790f2ed-e3d6-41e0-bae5-98626305d66f.png" />
+    <Content Include="Content\Image\Head\ec67e086-705f-4ff0-93fa-851df027c8bb.png" />
+    <Content Include="Content\Image\Head\edfa6644-116f-4f94-a50d-25ee30e0ab04.png" />
+    <Content Include="Content\Image\Head\f608e7aa-64af-47ee-a85d-482ec4a694ac.png" />
+    <Content Include="Content\Image\Head\f9c9dd95-7c07-4a3a-8609-4b930bd5d96d.png" />
+    <Content Include="Content\Image\Head\fa1507c2-d29b-49a7-affc-6be1ba8e81c6.png" />
+    <Content Include="Content\Image\Head\fad8890a-92ec-43e9-8a90-0ff1b32f4f13.png" />
+    <Content Include="Content\Image\Head\fb868050-1a36-440c-81f6-675120765832.png" />
+    <Content Include="Content\Image\Temp\05c899bf-c8ac-43db-93fa-7a277617ea41.jpg" />
+    <Content Include="Content\Image\Temp\076bfe50-5d90-409c-a670-e3fd70860981.png" />
+    <Content Include="Content\Image\Temp\0b09afa1-fa06-44fa-9537-da80ccfbad74.png" />
+    <Content Include="Content\Image\Temp\11d5ed38-8f89-49a9-8314-11d98d98597b.png" />
+    <Content Include="Content\Image\Temp\13f002e6-cdd7-4bc0-9a20-adf51312a7d8.jpg" />
+    <Content Include="Content\Image\Temp\179c9d13-4998-4227-a551-017297e96edc.jpg" />
+    <Content Include="Content\Image\Temp\18e0956c-8b1b-4fe9-9534-dedd761f464a.jpg" />
+    <Content Include="Content\Image\Temp\1acbd838-7313-4357-9c10-e5c2c5c57d54.jpg" />
+    <Content Include="Content\Image\Temp\1fa1af2e-9e29-44f5-8cfb-76fb1f930ea3.png" />
+    <Content Include="Content\Image\Temp\2202fb1b-ced6-45b6-a5e6-a293fbb76ddc.jpg" />
+    <Content Include="Content\Image\Temp\2510677b-7937-41fb-9e6a-ae07a9e88f57.png" />
+    <Content Include="Content\Image\Temp\27f5d3bb-d58c-40ee-b98b-4963f77e9254.png" />
+    <Content Include="Content\Image\Temp\2a72af40-6827-4e94-9a44-864dd007577b.png" />
+    <Content Include="Content\Image\Temp\2d3d0595-300a-4432-8d99-6be6a41ccf43.png" />
+    <Content Include="Content\Image\Temp\30c7e808-928c-4cf2-b8a9-ae65b5302c46.png" />
+    <Content Include="Content\Image\Temp\33ee7c70-baee-409e-aa66-87d8dd335d1b.jpg" />
+    <Content Include="Content\Image\Temp\34369faf-d176-45b4-9253-37c85f0d999f.png" />
+    <Content Include="Content\Image\Temp\3c1b4f66-ffe1-483a-8355-29753986fb05.png" />
+    <Content Include="Content\Image\Temp\42a08426-ffa8-429a-823e-274c380ac926.jpg" />
+    <Content Include="Content\Image\Temp\42ec98c0-e5f5-4431-8a74-a0321ffe0a7e.jpg" />
+    <Content Include="Content\Image\Temp\44895185-d1d6-49f0-83a5-827f8d810bc0.jpg" />
+    <Content Include="Content\Image\Temp\4bdf6b0e-6bb9-4128-83e6-879f4dc4dd45.png" />
+    <Content Include="Content\Image\Temp\50002091-e6b2-46c3-90cf-7b08d70151c0.png" />
+    <Content Include="Content\Image\Temp\51c16aca-8aa9-4228-9b68-97a71151a03a.png" />
+    <Content Include="Content\Image\Temp\570b023b-f725-4b51-a9b0-e391912fefeb.png" />
+    <Content Include="Content\Image\Temp\578af2e6-91be-4a9c-9859-6878f2732192.png" />
+    <Content Include="Content\Image\Temp\57e372a9-d478-4037-9742-4c82401df125.png" />
+    <Content Include="Content\Image\Temp\58cca9e8-04d3-4ae3-99a5-eb9fe951072c.png" />
+    <Content Include="Content\Image\Temp\5b71e305-a077-461a-94a3-3e4cc0a1f927.jpg" />
+    <Content Include="Content\Image\Temp\5fb79e55-382b-42e9-a022-7f5717885e1b.jpg" />
+    <Content Include="Content\Image\Temp\65364465-d625-4b07-90b6-53ffd23879d4.png" />
+    <Content Include="Content\Image\Temp\6660e731-b9d0-47a4-8103-90aa64deceed.jpg" />
+    <Content Include="Content\Image\Temp\68eb2c41-8688-4406-aaad-04717cf5044a.jpg" />
+    <Content Include="Content\Image\Temp\6e66ee1f-4288-446e-932c-0ca40e83c915.png" />
+    <Content Include="Content\Image\Temp\6f0a899c-47af-42ea-bce1-3c77fa5e28e6.png" />
+    <Content Include="Content\Image\Temp\756fbda7-3243-439d-83d7-4df34538299b.png" />
+    <Content Include="Content\Image\Temp\75ceda53-5581-487b-aa40-215915078ab3.jpg" />
+    <Content Include="Content\Image\Temp\79ee97b1-ad41-4081-bed3-f5a7baee4896.png" />
+    <Content Include="Content\Image\Temp\7c319097-a9cb-4df4-a099-07a0e173b982.jpg" />
+    <Content Include="Content\Image\Temp\813f3a5d-a47d-4438-9691-3c9ceeb4f2d3.jpg" />
+    <Content Include="Content\Image\Temp\829d2ac5-a40c-4f79-ad15-2124bcfc4f07.jpg" />
+    <Content Include="Content\Image\Temp\83ea7d5f-b3c7-4b6d-9c7e-8774f70d21ac.jpg" />
+    <Content Include="Content\Image\Temp\84a77887-5f0f-4f45-9f5f-e8aeed8ce103.png" />
+    <Content Include="Content\Image\Temp\8594b4ec-7cfb-4156-8efa-5ef695bdd2db.png" />
+    <Content Include="Content\Image\Temp\8798e957-7f67-4c82-b7c4-be185142d7bc.png" />
+    <Content Include="Content\Image\Temp\8c863225-f6fa-48a3-9840-67e2b066e834.jpg" />
+    <Content Include="Content\Image\Temp\8d0ccb41-c4e1-4aec-a061-ddb6157e95bc.png" />
+    <Content Include="Content\Image\Temp\8d957915-ea89-4cf2-a5ad-cb38a1936aae.png" />
+    <Content Include="Content\Image\Temp\8da79e83-2223-49d6-b070-e627ed45b105.png" />
+    <Content Include="Content\Image\Temp\8db29832-9246-4b4a-ad2f-22f149b81d90.png" />
+    <Content Include="Content\Image\Temp\8e7fd085-34f0-47b2-9d85-baa24136ec31.jpg" />
+    <Content Include="Content\Image\Temp\8f235973-fc89-49ee-9ea0-8b172278b154.jpg" />
+    <Content Include="Content\Image\Temp\90cc8b39-5ca7-4f75-aa22-52edb1cc77b1.jpg" />
+    <Content Include="Content\Image\Temp\9ad8451d-a02b-4f7c-837e-32772618cc48.png" />
+    <Content Include="Content\Image\Temp\a07a20df-9ec5-4b57-95cb-1f31d9a13221.png" />
+    <Content Include="Content\Image\Temp\a0838a34-99c6-4ada-81bb-872af8fe972e.jpg" />
+    <Content Include="Content\Image\Temp\a0ad2771-0d3c-49cf-80a6-3ee15a3fb3cd.jpg" />
+    <Content Include="Content\Image\Temp\a1f2b41d-7270-4739-b613-9f365cece286.png" />
+    <Content Include="Content\Image\Temp\a2203cbe-b93e-4011-8c0b-e87b868e40ca.png" />
+    <Content Include="Content\Image\Temp\a828ca19-f477-49c5-af7d-5a8b2a779993.png" />
+    <Content Include="Content\Image\Temp\aad444d0-4515-478b-b6e5-53c415b00f8c.jpg" />
+    <Content Include="Content\Image\Temp\ba0afe54-da24-4f0b-be9c-e744e26bbef5.png" />
+    <Content Include="Content\Image\Temp\ba72a638-b74d-4527-b11d-463b8df574c1.png" />
+    <Content Include="Content\Image\Temp\bb7fddb1-9239-432f-bf85-2edec1b2452a.png" />
+    <Content Include="Content\Image\Temp\bd39444f-681d-49db-8f06-9864393bae19.jpg" />
+    <Content Include="Content\Image\Temp\bf3bd508-e514-4bbf-b6b8-e05506597112.jpg" />
+    <Content Include="Content\Image\Temp\c017f842-a1f1-4707-ac00-5a7f2eae5208.png" />
+    <Content Include="Content\Image\Temp\c0f01865-df5e-4c4c-94c8-3345ed08d731.jpg" />
+    <Content Include="Content\Image\Temp\c49fb5ed-1a1b-42c3-a411-5d7966d4aa83.png" />
+    <Content Include="Content\Image\Temp\c6d2d272-6a1e-4caf-bee0-0b302be23af2.png" />
+    <Content Include="Content\Image\Temp\c7d642d8-ed33-4221-aacb-41545ada6045.jpg" />
+    <Content Include="Content\Image\Temp\c7d819a7-c967-4fe9-b3ba-b48ca9cdf334.png" />
+    <Content Include="Content\Image\Temp\c7d95288-c8aa-4b17-ba78-ee6e7b279661.jpg" />
+    <Content Include="Content\Image\Temp\c98ba95e-fb16-4c5f-b867-5dcadfa81da0.png" />
+    <Content Include="Content\Image\Temp\cb09e9ef-74e2-415b-aeaf-2b198b0b1c5e.png" />
+    <Content Include="Content\Image\Temp\d63e2b71-edaa-49ec-af57-763e4d42edd8.png" />
+    <Content Include="Content\Image\Temp\d893bd23-97f6-4353-80fa-e383b11e5d3b.png" />
+    <Content Include="Content\Image\Temp\d9081e88-d540-4710-ac19-24d1e7420a2d.png" />
+    <Content Include="Content\Image\Temp\db045437-a5d7-4caa-a0ea-2b6f80e3cbe3.png" />
+    <Content Include="Content\Image\Temp\dd22ff27-7b3a-4b49-81f1-c16910811325.jpg" />
+    <Content Include="Content\Image\Temp\e2406a8b-feba-440a-88a3-51048b9cc316.png" />
+    <Content Include="Content\Image\Temp\e3caabdc-baae-4490-95c1-96c0617c9f85.png" />
+    <Content Include="Content\Image\Temp\e45a4485-1a09-4507-9cdc-0c7bde713f4e.png" />
+    <Content Include="Content\Image\Temp\eaf5d13f-b9bf-4c66-a182-291c58cea845.jpg" />
+    <Content Include="Content\Image\Temp\eba157c6-2070-45af-9e9b-6b6498ae3fcd.jpg" />
+    <Content Include="Content\Image\Temp\ed2f3921-7d00-4af0-860e-0286c6555d49.jpg" />
+    <Content Include="Content\Image\Temp\efe9968f-79b7-48aa-81ac-14bcccc2c40b.jpg" />
+    <Content Include="Content\Image\Temp\f45801e8-c09e-4828-ba29-4a5feadd0afa.png" />
+    <Content Include="Content\Image\Temp\f4dc4776-7fef-410a-a23e-93c0f6d9fa78.png" />
+    <Content Include="Content\Image\Temp\f8673fef-7b4d-4387-b0c5-240fa1b3d871.png" />
+    <Content Include="Content\Image\Temp\fa158964-c74f-4ed3-9f27-446be6b987eb.jpg" />
+    <Content Include="Content\Image\Temp\fb9b5806-5044-4889-b843-be3c5eb0a660.jpg" />
+    <Content Include="Content\Image\Temp\ffac7f2a-7f40-4d97-b208-91a519017738.jpg" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\.gitattributes" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\.gitignore" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\css\bootstrap.min.css" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\css\qunit.css" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\img\data.png" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\img\icons.png" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\img\picture-2.jpg" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\img\picture.jpg" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\js\bootstrap.min.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\js\jquery.min.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\assets\js\qunit.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\demo\css\main.css" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\demo\index.html" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\demo\js\main.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\dist\cropper.css" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\dist\cropper.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\dist\cropper.min.css" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\dist\cropper.min.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\docs\apple-touch-icon-precomposed.png" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\docs\css\main.css" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\docs\favicon.ico" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\docs\humans.txt" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\docs\index.html" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\docs\js\main.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\docs\robots.txt" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\examples\crop-avatar\css\main.css" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\examples\crop-avatar\img\loading.gif" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\examples\crop-avatar\img\picture.jpg" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\examples\crop-avatar\index.html" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\examples\crop-avatar\js\main.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\Gruntfile.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\img\bg.png" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\build.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\change.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\cropper.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\defaults.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\handlers.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\intro.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\listen.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\load.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\methods.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\outro.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\plugin.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\preview.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\prototype.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\render.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\template.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\utilities.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\src\js\variables.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\css\main.css" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\events.html" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\events\build.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\events\built.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\events\dragend.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\events\dragmove.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\events\dragstart.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\events\zoomin.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\events\zoomout.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\js\main.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods.html" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\clear.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\destroy.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\disable.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\enable.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\getCanvasData.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\getContainerData.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\getCropBoxData.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\getCroppedCanvas.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\getData.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\getImageData.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\move.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\replace.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\reset.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\rotate.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\setAspectRatio.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\setCanvasData.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\setCropBoxData.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\setDragMode.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\methods\zoom.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options.html" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\aspectRatio.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\autoCrop.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\background.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\checkImageOrigin.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\crop.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\dragCrop.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\guides.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\highlight.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\minCanvasHeight.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\minCanvasWidth.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\minContainerHeight.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\minContainerWidth.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\minCropBoxHeight.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\minCropBoxWidth.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\modal.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\mouseWheelZoom.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\movable.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\resizable.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\rotatable.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\strict.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\touchDragZoom.js" />
+    <Content Include="Content\jqcool.net-cropper\cropper-master\test\options\zoomable.js" />
+    <Content Include="Content\jqcool.net-divas\css\content.css" />
+    <Content Include="Content\jqcool.net-divas\css\CSSreset.min.css" />
+    <Content Include="Content\jqcool.net-divas\css\divas_free_skin.css" />
+    <Content Include="Content\jqcool.net-divas\css\divas_instructions_style.css" />
+    <Content Include="Content\jqcool.net-divas\css\font-awesome.css" />
+    <Content Include="Content\jqcool.net-divas\css\font-awesome.min.css" />
+    <Content Include="Content\jqcool.net-divas\css\prism.css" />
+    <Content Include="Content\jqcool.net-divas\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\jqcool.net-divas\images\backup_img.png" />
+    <Content Include="Content\jqcool.net-divas\images\DivasSliderLogo.png" />
+    <Content Include="Content\jqcool.net-divas\images\filter.svg" />
+    <Content Include="Content\jqcool.net-divas\images\next-black.svg" />
+    <Content Include="Content\jqcool.net-divas\images\next.png" />
+    <Content Include="Content\jqcool.net-divas\images\next.svg" />
+    <Content Include="Content\jqcool.net-divas\images\next_black.svg" />
+    <Content Include="Content\jqcool.net-divas\images\placeholder.gif" />
+    <Content Include="Content\jqcool.net-divas\images\prev-black.svg" />
+    <Content Include="Content\jqcool.net-divas\images\prev.png" />
+    <Content Include="Content\jqcool.net-divas\images\prev.svg" />
+    <Content Include="Content\jqcool.net-divas\images\slider\img1.jpg" />
+    <Content Include="Content\jqcool.net-divas\images\slider\img2.jpg" />
+    <Content Include="Content\jqcool.net-divas\images\slider\img3.jpg" />
+    <Content Include="Content\jqcool.net-divas\images\slider\img4.jpg" />
+    <Content Include="Content\jqcool.net-divas\images\slider\img5.jpg" />
+    <Content Include="Content\jqcool.net-divas\images\slider\img6.jpg" />
+    <Content Include="Content\jqcool.net-divas\images\slider\img7.jpg" />
+    <Content Include="Content\jqcool.net-divas\index.html" />
+    <Content Include="Content\jqcool.net-divas\instructions.html" />
+    <Content Include="Content\jqcool.net-divas\js\jquery-2.1.1.min.js" />
+    <Content Include="Content\jqcool.net-divas\js\jquery.divas-1.0.js" />
+    <Content Include="Content\jqcool.net-divas\js\jquery.divas-1.0.min.js" />
+    <Content Include="Content\jqcool.net-divas\js\prism.js" />
+    <Content Include="Content\jqcool.net-divas\www.jqcool.net.txt" />
+    <Content Include="Content\jquery\jquery-2.2.2.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Config\Filters\AccountFilterAttribute.cs" />
+    <Compile Include="App_Config\Unity\CustomerControllerActivator.cs" />
+    <Compile Include="App_Config\Unity\UnityDependencyResolver.cs" />
+    <Compile Include="Areas\Forum\Controllers\BoardController.cs" />
+    <Compile Include="Areas\Forum\Controllers\CommentController.cs" />
+    <Compile Include="Areas\Forum\Controllers\LikePersonController.cs" />
+    <Compile Include="Areas\Forum\Controllers\LikePostController.cs" />
+    <Compile Include="Areas\Forum\Controllers\PostController.cs" />
+    <Compile Include="Areas\Forum\Controllers\UserOperationController.cs" />
+    <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
+    <Compile Include="Areas\UserInfo\Controllers\FriendController.cs" />
+    <Compile Include="Areas\UserInfo\Controllers\UserController.cs" />
+    <Compile Include="Areas\UserInfo\UserAreaRegistration.cs" />
+    <Compile Include="BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Forum\Views\LikePerson\" />
+    <Folder Include="Areas\Forum\Views\LikePost\" />
+    <Folder Include="Areas\UserInfo\Views\Friend\" />
+    <Folder Include="Content\userimage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShareYou.AspNetSession\ShareYou.AspNetSession.csproj">
+      <Project>{32df58b6-ea73-4bed-af21-d26f14e5541f}</Project>
+      <Name>ShareYou.AspNetSession</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.DBAccess\ShareYou.DBAccess.csproj">
+      <Project>{33b094ab-9d0f-4feb-b247-4fe217f89de0}</Project>
+      <Name>ShareYou.DBAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.DBSession\ShareYou.DBSession.csproj">
+      <Project>{7872b273-0d78-439e-b68d-373d263a3565}</Project>
+      <Name>ShareYou.DBSession</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IDBAccess\ShareYou.IDBAccess.csproj">
+      <Project>{1a91222f-227e-406d-ba0b-88aaf484520c}</Project>
+      <Name>ShareYou.IDBAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IDBSession\ShareYou.IDBSession.csproj">
+      <Project>{9dee0f68-eabc-4414-83ce-580dac50116e}</Project>
+      <Name>ShareYou.IDBSession</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IServices\ShareYou.IServices.csproj">
+      <Project>{6A4951A1-B234-4B87-9F9B-5596E585BA87}</Project>
+      <Name>ShareYou.IServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.IState\ShareYou.IState.csproj">
+      <Project>{CB55AC96-6407-4553-8369-13351ADE6727}</Project>
+      <Name>ShareYou.IState</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.Model\ShareYou.Model.csproj">
+      <Project>{0DAE05A5-97C9-4B21-A16F-E6F9E7C76C00}</Project>
+      <Name>ShareYou.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.Services\ShareYou.Services.csproj">
+      <Project>{74269cc7-a762-4dd9-8b2a-15f6d5e2c741}</Project>
+      <Name>ShareYou.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShareYou.Utility\ShareYou.Utility.csproj">
+      <Project>{28103564-9F87-4A86-B3B9-CBB46981044C}</Project>
+      <Name>ShareYou.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6437</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:6437/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

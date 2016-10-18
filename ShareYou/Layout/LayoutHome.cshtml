@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width"/>
+    @RenderSection("meta", required: false)
+    @{
+        string username = string.Empty;
+        string head = string.Empty;
+        if (ViewBag.logined)
+        {
+            username = ViewBag.User.UserName;
+            head ="/"+ViewBag.User.Head;
+        }
+    }
+    <link href="~/Content/bootstrap-3.3.5/css/bootstrap.css" rel="stylesheet"/>
+    <script src="~/Content/jquery/jquery-2.2.2.js"></script>
+    <script src="~/Content/bootstrap-3.3.5/js/bootstrap.js"></script>
+    <style type="text/css">
+        body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+            font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif !important;
+        }
+
+        body {
+            background-color: #FFF;
+        }
+        /*导航条阴影效果*/
+        nav {
+            box-shadow: 0 2px 4px 0 #d9d9d9 !important;
+        }
+
+        .navbar-nav > li > .dropdown-menu {
+            margin-top: 2px !important;
+            border-top-left-radius: 4px !important;
+            border-top-right-radius: 4px !important;
+        }
+        /**列表颜色变白*/
+        ol {
+            background-color: #FFF !important;
+        }
+
+    </style>
+    @RenderSection("style", false)
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        validateimg();
+        navinitial();
+        //给登录按钮注册点击函数
+        $('#sub').click(login);
+        register();
+        @RenderSection("jqready",false)
+    });
+        @RenderSection("function",false)
+        //登录按钮事件函数
+        function login() {
+            var data = $('#formlogin').serialize();
+            //开始发送数据
+            $.post("/userinfo/user/login", data, function (result) {
+                var json = JSON.parse(result);
+                if (json.state === true) {
+                    alert("登录成功");
+                    $('#username').text(json.user.UserName);
+                    $('#userhead').attr("src", "/" + json.user.Head);
+                    //一系列完成之后导航自己要进行一次更改
+                    $('.userdata').show();
+                    $('.nonlogin').hide();
+                } else {
+                    $('#validateimg').click();
+                }
+            });
+        }
+        //导航条用户的初始化
+        function navinitial() {
+            var logined = @ViewBag.logined.ToString().ToLower();
+            if (logined === false) {
+                //如果没有登录
+                $('.userdata').hide();
+                $('.nonlogin').show();
+            } else {
+                $('.userdata').show();
+                $('.nonlogin').hide();
+            }
+        }
+        //验证码图片点击初始化
+        function validateimg() {
+            $('.validateimg').click(function () {
+                $(this).attr('src', $(this).attr('src') + "?1");
+            });
+        }
+        ///注册按钮的事件
+        function register() {
+            $('#btnregister').click(function() {
+                var data = $("#fromregister").serialize();//整理要发送的数据
+                //开始发送数据
+                $.post("/userinfo/user/register", data, function(result) {
+                    var obj = JSON.parse(result);
+                    if (obj.state) {
+                        //表示注册成功
+                        alert('注册成功');
+                        //然后重载页面
+                        window.location.reload();
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+<!--要添加我们的对话框出来-->
+    <!--登录模态对话框-->
+    <div class="modal fade" id="loginmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">用户登录</h4>
+                </div>
+                <div class="modal-body">
+                    <!--登录框体-->
+                    <form id="formlogin" method="POST">
+                        <div id="dvaccount" class="form-group has-feedback">
+                            <label for="idaccount" class="control-label">账号</label>
+                            <input type="text" class="form-control" name="account" id="idaccount" placeholder="Account" aria-describedby="idaccountstate">
+                            <span class="glyphicon  form-control-feedback" aria-hidden="true"></span>
+                            <span id="idaccountstate" class="sr-only"></span>
+                        </div>
+                        <div id="dvpassword" class="form-group">
+                            <label for="idpassword">密码</label>
+                            <input type="password" name="password" class="form-control" id="idpassword" placeholder="Password">
+                            <span class="glyphicon  form-control-feedback" aria-hidden="true"></span>
+                            <span id="idpasswordstate" class="sr-only"></span>
+                            <p id="ppassword"></p>
+                        </div>
+                        <img style="float: left !important;" src="/home/getvalidatecode" class="img-rounded validateimg" />
+                        <input type="text" name="validatecode" class="form-control" id="exampleInputPassword1" placeholder="ValidateCode" style="width: 87% !important;">
+                        <div id="dvrember" class="checkbox">
+                            <label>
+                                <input type="checkbox" name="remember" vale="1"> 记住我
+                            </label>
+                        </div>
+                        <button id="sub" type="button" class="btn btn-primary btn-lg btn-block">登录</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--注册模态对话框-->
+    <div class="modal fade" id="registermodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <!--注册框体-->
+                    <form id="fromregister">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">账号</label>
+                            <input type="text" class="form-control" name="account" id="exampleInputEmail1" placeholder="Account">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">密码</label>
+                            <input type="password" class="form-control" name="password1" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword2">再次输入密码</label>
+                            <input type="password" class="form-control" name="password2" id="exampleInputPassword2" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName">网名</label>
+                            <input type="text" class="form-control" name="username" id="exampleInputName" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName1">描述自己</label>
+                            <input type="text" class="form-control" name="description" id="exampleInputName1" placeholder="Description">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword2">验证码</label>
+                            <img style="float: left !important;" src="/home/getvalidatecode" class="img-rounded validateimg" />
+                            <input type="text" class="form-control" name="validatecode" placeholder="Validatecode">
+                        </div>
+                        <button id="btnregister" type="button" class="btn btn-primary btn-lg btn-block">注册</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+<div class="container-fluid">
+    <!--我们自己来添加导航-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <!--导航条-->
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Brand</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">Link</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <!--登录注册所在的按钮-->
+                            <li role="presentation" class="nonlogin active"><a data-toggle="modal" data-target="#loginmodal" href="#">登录</a></li>
+                            <li role="presentation" class="nonlogin"><a data-toggle="modal" data-target="#registermodal" href="#">注册</a></li>
+                            <li><img id="userhead" class="img-rounded userdata" src="@head" style="height: 50px; width: 50px;"/></li>
+                            <li class="dropdown userdata">
+                                <a id="username" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@username<span class="badge">4</span><span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">个人中心</a></li>
+                                    <li><a href="#">私信</a></li>
+                                    <li><a href="#">回复</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+    </div>
+
+    <!--第二行给我们的面包导航-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+            </ol>
+        </div>
+    </div>
+    @RenderSection("containerrow", false)
+</div>
+    @RenderBody()
+</body>
+</html>

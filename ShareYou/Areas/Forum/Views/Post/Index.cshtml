@@ -1,0 +1,96 @@
+﻿@using ShareYou.Model.ViewModel
+@model ShareYou.Model.ViewModel.ViewPostIndex
+@{
+    Layout = "~/Layout/LayoutHome.cshtml";
+    ViewBag.Title = "具体的帖子";
+}
+@section style
+{
+    <style type="text/css">
+        .list-group-item {
+            border-radius: 4px;
+            border-color: transparent !important;
+            width: 85%;
+        }
+
+        hr {
+            margin-top: 7px !important;
+            margin-bottom: 16px !important;
+        }
+
+        img {
+            margin-bottom: 6px !important;
+            border-radius: 4px;
+            border-color: transparent !important;
+        }
+    </style>
+}
+@section containerrow
+{
+
+
+    <div class="row">
+        <!--响应式布局，小屏幕2列，大屏幕3列-->
+        <div class="col-sm-3 col-md-2" style="">
+            <br/>
+            <img id="headimg" src="/@Model.userinfo.User.Head" alt="head" class="img-rounded"/><span>@Model.userinfo.User.UserName</span>
+            <!--被点赞，追随者follower,用字体图片来使用-->
+            <br/>
+            <span style="color: blueviolet" id="personlike" class="glyphicon glyphicon-heart" aria-hidden="true">@Model.userinfo.UserInfo.Liked</span>
+            <span style="color: blueviolet" id="personlike" class="glyphicon glyphicon-envelope" aria-hidden="true">私信TA</span>
+            
+            <span style="color: blueviolet" id="personlike" class="glyphicon glyphicon-user" aria-hidden="true">私信TA</span>
+            <br/>
+            <br/>
+            <ul id="masteroptional" class="nav nav-pills nav-stacked">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Profile</a></li>
+                <li role="presentation"><a href="#">Messages</a></li>
+            </ul>
+        </div>
+        <!--The second col!!!-->
+        <div class="col-sm-9 col-md-8" style="">
+            <div id="posttitle" class="page-header">
+                <h1>@Model.post.Title<small>@Model.userinfo.User.UserName</small>
+                </h1>
+            </div>
+            <!--访问量，评论人数-->
+            <span style="font-size: 17px !important;" class="glyphicon glyphicon-eye-open" aria-hidden="true">888</span>
+            &nbsp;&nbsp;&nbsp;
+            <span style="font-size: 17px !important;" class="glyphicon glyphicon-comment" aria-hidden="true">@(Model.comments.Count*Model.commentPagecount)</span>
+            &nbsp;&nbsp;&nbsp;
+
+            <span style="font-size: 17px !important;" class="glyphicon glyphicon-time" aria-hidden="true">@Model.post.DateLine</span>
+            <br/>
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <br/>
+                    @Model.post.Content
+                </div>
+            </div>
+
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                <a class="btn btn-info">赞一下(@Model.post.Like)</a>
+                <a class="btn btn-danger">楼主又来水了...(@Model.post.UnLike)</a>
+            </div>
+            <!--评论框体的展示-->
+            @{
+                foreach (ViewComment viewComment in Model.comments)
+                {
+                    <div class="panel panel-info">
+                        <div class="panel-body">
+                            <!--评论人的头像-->
+                            <img src="/@viewComment.User.Head" class="img-rounded" style="width: 60px; height: 60px;" />
+                            <span>@(viewComment.User.UserName)发表评论:</span><br />
+                            &nbsp;&nbsp;&nbsp;&nbsp;@viewComment.Comment.Content
+                            <br />
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
+}
+

@@ -1,0 +1,169 @@
+贴子表
+    postid,title,content,like,unlike,userid,boardid,postedtime,delflag
+回复表
+   id,content ,floor,parentid,publishedtime,delflag  --其中的parentid代表的就是楼中楼
+版块表
+   boardid,title,publishedtime,delflg,
+帖子被赞表
+ id,postid,userid,
+
+用户模块中的表
+  用户简单表
+    userid,username,account,password,head,email,gender,regdate,userstatus,要进行改造一下
+ 用户详细表,和上面的意义对应
+    userid,number,address,like,unlike,  
+		       被赞，被讨厌
+
+
+---所有操作不删除系列
+-------------------------------------针对以上的我们重新来进行一次设计------------------------
+论坛表格
+
+	版块表:forum_board
+		boardid,
+		title,
+		decription,
+		publishedTime,     --建立时间
+
+	帖子表:forum_post    --开始增加一些东西，表示什么权限(会员等级限制,(注册会员(必须登录),高贵会员，尊贵会员，至尊会员),)
+		postid,
+		title,
+		content,
+		userid,             --发帖人id
+		like,
+		unlike,
+		boardid,            --版块id
+		LimitedMemberid,    --会员id，
+		postedtime,			--发帖时间
+		delflag,            --删除标记
+
+
+	评论表:forum_comment
+		commentid,
+		content,
+		postid,            --帖子id
+		userid,			   --发帖人id
+		parentid,		   --对评论的回复，0，表示的是主回复，
+		publishedtime,     --评论时间
+
+	会员表:forum_member
+		memberid,
+		title         --什么样子的会员
+
+ 
+用户表格
+	用户简单信息表格:user_usersimp
+		userid,
+		name,
+		account,
+		password,
+		memberid,      --会员编号
+		head,
+		status,
+	用户详细信息表user_userinfo
+		userid,     --和上面userid保持一致，使用事物机制来确保
+		email,      --邮件
+		number,     --电话号码
+		like,       --被赞
+		follower,   --追随者
+		follow,     --关注的人
+		status,     --当前用户的状态,
+
+
+
+	用户点赞表user_likeperson   -一旦被点赞了之后，不能消除,给用户点赞
+		id,
+		userid,           --被赞用户
+		userlikeid,       --点了赞的这个用户的id;
+		looked            --用户是否被了
+		dateline,    --发生的时间
+
+	用户帖子点赞表user_likepost  --给帖子点赞用的
+		id,
+		postid,           --被点赞的帖子的id
+		userlikeid,       --点了这个赞的用户,
+		looked,           --用户是否被查看,
+		dateline     --发表的时间,
+
+	用户好友组表user_friendgrop
+	    id,
+	    userid,
+	    title,     --好友组的名称
+	    dateline   --开始的时间
+
+	用户好友表user_friend
+		id,
+		userid,
+		friendid,
+		fusername,       --好友名字
+		gid,             --用户好友组id，也就是给好友分组
+		note,            --好友的备注
+
+	用户申请好友表user_friendrequest
+		id,
+		friendid,     --被请求的用户的id
+		userid,       --发起人
+		username,     --发起人网名
+		gid,          --如果被通过，这个好友所在好友分组
+		note,          --申请的留言
+		dateline      --时间
+
+	用户好友的操作user_friendoperation     暂时不用这个表
+		id,
+		userid,       
+		friendid,    --用这样的方式来进行好友的操作，如果没有好友，就不会写入数据
+		action,      --likeperson,likepost,post,comment,
+		operationId,         --这个要根据上面的判断要进行一次的转换
+		dateline,
+	用户关注表，user_follow
+		id,
+		userid,
+		username,
+		followid,     --被关注的者的id
+		followname,   --被关注者的name
+		note,         --用户设置的备注
+		counts,       --被关注的的人，每一次的操作，都会增加这个数值
+		dateline      --发生的时间
+
+	用户的操作表,user-operation,用户会到这里来查
+		id,
+		userid,     
+		username,
+		action ,                     --表示用户的动作,likeperson likepost,post,comment
+		eventid,                     --根据上面的动作来判断，具体到那张表中去找数据
+		dateline,                    --发生的时间
+
+	用户消息表user_message   --用户直接发送消息
+	    messageid,
+	    content,
+	    userid,              --接受消息的用户
+	    writerid,            --发送消息的用户
+	    looked,              --是否被查看了，0表未查看，1表示查看了
+	    publishedtime,       --发送的时间
+
+	用户通知 USER_NOTIFICATION    --用户通知表(好友，关注的人，自己被点赞，自己的帖子被点赞，都要写入一次通知)
+		ID,
+		USERID,
+		COUNT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
